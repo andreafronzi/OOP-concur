@@ -15,9 +15,10 @@ public class TestVirtualThreads {
 	public static void main(String[] args) {
 		var list = new ArrayList<Thread>();
 		var t0 = System.currentTimeMillis();
-		for (var i = 0; i < 100_000; i++) {		
+		var c = new Counter();
+		for (var i = 0; i < 1000_000; i++) {		
 			// Thread t = new Thread(TestVirtualThreads::sleepBehaviour);
-			Thread t = Thread.ofVirtual().unstarted(TestVirtualThreads::sleepBehaviour);
+			Thread t = MyVirtualThread.make(c);
 			t.start();
 			list.add(t);
 		}
@@ -29,6 +30,7 @@ public class TestVirtualThreads {
 		});
 
 		var t1 = System.currentTimeMillis();
+		System.out.println("Counter final value: " + c.getValue());
 		System.out.println("Time elapsed: " + (t1 - t0));
 
 	}
