@@ -16,7 +16,7 @@ public class Visualiser extends Thread {
 	public void run() {
 		while (!stop) {
 			frame.updatePosition(context.getPositions());
-			// log("update pos");
+			 //log("update pos");
 			try {
 				Thread.sleep(20);
 			} catch (Exception ex) {

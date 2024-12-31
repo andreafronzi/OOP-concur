@@ -16,6 +16,7 @@ public class Context {
 		BallAgent agent = new BallAgent(this);
 		balls.add(agent);
 		System.out.println("New ball created - current number of balls: " + balls.size());
+		//dopo aver creato una palla, quindi un nuovo thread, lo mette in esecuzione attraverso la funzione start
 		agent.start();
 	}
 

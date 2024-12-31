@@ -4,11 +4,11 @@ import java.util.*;
 
 public class BallAgent extends Thread {
 
-	private P2d pos;
-	private V2d vel;
+	private P2d pos;       //position
+	private V2d vel;       //vector tha stand for speed
 	private boolean stop;
 	private double speed;
-	private Boundary bounds;
+	private Boundary bounds;     //bordi
 	private long lastUpdate;
 
 	public BallAgent(Context ctx) {
@@ -37,14 +37,19 @@ public class BallAgent extends Thread {
 		stop = true;
 	}
 
+
+	//aggiorna la posizione in base al tipo di moto fisico scelto e verifica se si sono toccati i bordi
 	private synchronized void updatePos() {
 		long time = System.currentTimeMillis();
 		long dt = time - lastUpdate;
 		lastUpdate = time;
-		pos = pos.sum(vel.mul(speed * dt * 0.001));
+		//moto rettilineo uniforme S=S0+v*t;
+		pos = pos.sum(vel.mul(speed * dt * 0.001));     	
 		applyConstraints();
 	}
 
+
+	//Rimbalzo e aggiornamento della velocita
 	private void applyConstraints() {
 		if (pos.x > bounds.getX1()) {
 			pos.x = bounds.getX1();
@@ -62,6 +67,7 @@ public class BallAgent extends Thread {
 	}
 
 	public synchronized P2d getPos() {
+		//copia difensiva
 		return new P2d(pos.x, pos.y);
 	}
 

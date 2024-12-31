@@ -3,6 +3,7 @@ package oop.concur.bouncingballs;
 import javax.swing.*;
 import java.awt.event.*;
 
+//ControlPanel is the frame in which create a panel to perform the action of create and remove balls
 public class ControlPanel extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
